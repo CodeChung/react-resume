@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>React Hello World</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id ="application-root"></div>
+        <script type="text/babel">
+            
+            function Header(props) {
+                return (
+                    <header>
+                        <address>
+                            <a href={`mailto:${props.email}?=subject=You're Hired!`}>{props.email}</a>
+                            <p>{props.number}</p>
+                        </address>
+                        <h1>{props.children}</h1>
+                        <img src={props.img} alt="Picture of Student"/>
+                    </header>
+                )
+            }
+
+            function Education(props) {
+                return (
+                    <section className="education">
+                        <h2>Education</h2>
+                        <div className="schools">{props.children}</div>
+                    </section>
+                )
+            }
+
+            function School(props) {
+                return (<div className="school">
+                    <h3>{props.school}: {props.year}</h3>
+                    <p>Majored in {props.major}</p>
+                </div>)
+            }
+
+            function Employment(props) {
+                return (
+                    <section className="employment">
+                        <h2>Employment</h2>
+                        <div className="jobs">{props.children}</div>
+                    </section>
+                )
+            }
+
+            function Job(props) {
+                return (
+                    <div className="job">
+                        <h3>{props.employer}</h3>
+                        <h4>{props.role}: {props.year}</h4>
+                        <p>{props.desc}</p>
+                    </div>
+                )
+            }
+
+            function App(props) {
+                return (
+                    <div>
+                        <Header 
+                            number="(999)999-9999"
+                            email="g.clown@student.com"
+                            img="https://images.pexels.com/photos/1619918/pexels-photo-1619918.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+                            George Clowney
+                        </Header>
+                        <main>
+                            <Education>
+                                <School
+                                    school="University of Education"
+                                    year="1900-1950"
+                                    major="Education" />
+                                <School
+                                    school="College of Clowning"
+                                    year="1950-2020"
+                                    major="Clown Studies" />
+                            </Education>
+                            <Employment>
+                                <Job
+                                    employer="Barnum & Bailey"
+                                    year="2020-2030"
+                                    role="Clown Teacher"
+                                    desc="Taught people how to be clowns"/>
+                                <Job
+                                    employer="NASA"
+                                    year="2030-2040"
+                                    role="Astronaut"
+                                    desc="Went to space"/>
+                            </Employment>
+                        </main>
+                    </div>
+                );
+            }
+            ReactDOM.render(
+                <App/>,
+                document.querySelector('#application-root')
+            );
+        </script>
+    </body>
+</html>
